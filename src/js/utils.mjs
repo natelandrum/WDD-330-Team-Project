@@ -11,7 +11,9 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+  const cart = getLocalStorage(key);
+  cart.push(data);
+  localStorage.setItem(key, JSON.stringify(cart));
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
@@ -22,7 +24,7 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-  export function getParams(param)
+  export function getParam(param)
     {const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.get(param);
