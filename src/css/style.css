@@ -80,6 +80,15 @@ header {
 .highlight {
   color: var(--tertiary-color);
 }
+.hidden {
+  display: none;
+}
+.discount {
+  color: red;
+}
+.discounted {
+  font-size: var(--small-font);
+}
 
 button {
   padding: 0.5em 2em;
