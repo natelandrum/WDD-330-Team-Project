@@ -1,4 +1,4 @@
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, rednerDetailsWithTemplate } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail">
@@ -12,7 +12,9 @@ function productDetailsTemplate(product) {
           alt="${product.NameWithoutBrand}"
         />
 
-        <p class="product-card__price">${product.FinalPrice}</p>
+        <p class="product-card__list-price hidden"><s>${product.SuggestedRetailPrice.toFixed(2)}</s></p>
+        <span class="discounted"></span>
+        <p class="product-card__final-price">${product.FinalPrice}</p>
 
         <p class="product__color">${product.Colors[0].ColorName}</p>
 
@@ -34,7 +36,7 @@ export default class ProductDetails {
     }
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        this.renderProductDetails("main");
+        rednerDetailsWithTemplate(productDetailsTemplate, "main", this.product);
 
         document
         .getElementById("addToCart")
@@ -42,9 +44,5 @@ export default class ProductDetails {
     }
     addToCart() {
         setLocalStorage("so-cart", this.product);
-    }
-    renderProductDetails(selector) {
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML("afterbegin", productDetailsTemplate(this.product))
     }
 }

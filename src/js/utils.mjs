@@ -41,4 +41,22 @@ export function renderListWithTemplate(
     parentElement.innerHTML = "";
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  list.forEach((product, index) => {
+    const element = parentElement.children[index];
+    checkDiscount(product, element);
+  });
+}
+
+export function rednerDetailsWithTemplate(templateFunction, selector, product) {
+  const element = document.querySelector(selector);
+  element.insertAdjacentHTML("afterbegin", templateFunction(product));
+  checkDiscount(product, element);
+}
+
+function checkDiscount(product, selector) {
+  if (product.SuggestedRetailPrice > product.FinalPrice) {
+      selector.querySelector(".product-card__list-price").classList.remove("hidden");
+      selector.querySelector(".product-card__final-price").classList.add("discount");
+      selector.querySelector(".discounted").textContent = `(-$${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)})`;
+  }
 }
