@@ -8,13 +8,13 @@ function productDetailsTemplate(product) {
 
         <img
           class="divider"
-          src="${product.Image}"
+          src="${product.Images.PrimaryLarge}"
           alt="${product.NameWithoutBrand}"
         />
 
         <p class="product-card__list-price hidden"><s>${product.SuggestedRetailPrice.toFixed(2)}</s></p>
         <span class="discounted"></span>
-        <p class="product-card__final-price">${product.FinalPrice}</p>
+        <p class="product-card__final-price">${product.FinalPrice.toFixed(2)}</p>
 
         <p class="product__color">${product.Colors[0].ColorName}</p>
 
