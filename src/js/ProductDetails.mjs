@@ -1,4 +1,4 @@
-import { setLocalStorage, rednerDetailsWithTemplate } from "./utils.mjs";
+import { setLocalStorage, renderDetailsWithTemplate } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail">
@@ -36,7 +36,7 @@ export default class ProductDetails {
     }
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
-        rednerDetailsWithTemplate(productDetailsTemplate, "main", this.product);
+        renderDetailsWithTemplate(productDetailsTemplate, "main", this.product);
 
         document
         .getElementById("addToCart")

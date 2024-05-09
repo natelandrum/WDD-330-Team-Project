@@ -47,7 +47,7 @@ export function renderListWithTemplate(
   });
 }
 
-export function rednerDetailsWithTemplate(templateFunction, selector, product) {
+export function renderDetailsWithTemplate(templateFunction, selector, product) {
   const element = document.querySelector(selector);
   element.insertAdjacentHTML("afterbegin", templateFunction(product));
   checkDiscount(product, element);
