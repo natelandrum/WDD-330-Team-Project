@@ -142,6 +142,21 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+.listing-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.listing-container .item {
+  justify-self: center;
+  width: 100px;
+}
+.listing-container p {
+  text-align: center;
+}
+.listing-container a {
+  text-decoration: none;
+  font-weight: 700;
+}
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;

@@ -60,3 +60,38 @@ function checkDiscount(product, selector) {
       selector.querySelector(".discounted").textContent = `(-$${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)})`;
   }
 }
+
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  position = "beforeend",
+  clear = false,
+  callback = null
+) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+
+  parentElement.insertAdjacentHTML(position, template);
+
+  if (callback) {
+    callback(data);
+  }
+}
+
+async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template
+}
+
+export async function loadHeaderFooter() {
+  const header = await loadTemplate("/partials/header.html");
+  const footer = await loadTemplate("/partials/footer.html");
+  const headerElement = document.getElementById("header");
+  const footerElement = document.getElementById("footer");
+
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
+}
