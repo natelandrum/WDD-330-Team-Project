@@ -231,6 +231,15 @@ button {
   grid-column: 3;
 }
 
+.cart-card__remove {
+  height: 44px;
+  grid-column: 4;
+}
+
+.cart-card__remove:hover {
+  transform: scale(1.2);
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
