@@ -29,5 +29,12 @@ export default class ShoppingCart {
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
 
         document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+        if (cartItems.length === 0) {
+            document.querySelector(this.parentSelector).innerHTML = "<p>No items in cart</p>";
+        }
+        else {
+            const total = cartItems.reduce((acc, item) => acc + item.FinalPrice * item.quanity, 0);
+            document.querySelector(this.parentSelector).parentElement.innerHTML += `<p class="total">Total: $${total.toFixed(2)}</p>`;
+        }
     }
 }

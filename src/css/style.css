@@ -102,6 +102,11 @@ button {
 }
 .divider {
   border-bottom: 2px solid var(--primary-color);
+  width: 100%;
+}
+.total {
+  display: flex;
+  justify-content: flex-end;
 }
 /* End utility classes */
 
