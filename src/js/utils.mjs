@@ -1,3 +1,5 @@
+import { searchForProduct } from "./ProductSearch.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -37,6 +39,7 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -108,4 +111,5 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
+  searchForProduct();
 }

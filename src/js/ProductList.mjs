@@ -21,16 +21,34 @@ function productCardTemplate(product) {
 }
 
 export default class ProductListing {
-    constructor(category, dataSource, listElement) {
+    constructor(category, dataSource, listElement, query = null) {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.query = query;
     }
     async init() {
+    if (this.category === "all") {
+        let all_products = await Promise.all([
+            this.dataSource.getData("tents"),
+            this.dataSource.getData("sleeping-bags"),
+            this.dataSource.getData("backpacks"),
+            this.dataSource.getData("hammocks")
+        ])
+        .then(([tents, sleepingBags, backpacks, hammocks]) => 
+            [...tents, ...sleepingBags, ...backpacks, ...hammocks]
+        .filter(product => product.Name.toLowerCase().includes(this.query.toLowerCase()))
+    );
+        this.renderList(all_products);
+        document.querySelector(".title").innerHTML = `${capitalize(this.query)} Products`;
+    }
+    else {
         let products = await this.dataSource.getData(this.category);
         this.renderList(products);
         document.querySelector(".title").innerHTML = capitalize(this.category);
     }
+
+}
     renderList(products) {
         renderListWithTemplate(productCardTemplate, this.listElement, products)
     }
