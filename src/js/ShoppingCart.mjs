@@ -12,7 +12,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${item.quanity}</p>
+  <p class="cart-card__quantity">qty: ${item.quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice.toFixed(2)}</p>
   <img src="/images/delete.svg" alt="Trash SVG by Dazzle UI" class="cart-card__remove" id="${item.Id}">
 </li>`;
@@ -51,7 +51,7 @@ export default class ShoppingCart {
     document.querySelector(this.parentSelector).innerHTML = "<p>Your cart is empty</p>";
     return;
   }
-  const total = cartItems.reduce((acc, item) => acc + item.FinalPrice * item.quanity, 0);
+  const total = cartItems.reduce((acc, item) => acc + item.FinalPrice * item.quantity, 0);
   document.querySelector(this.parentSelector).parentElement.innerHTML += `<p class="total">Total: $${total.toFixed(2)}</p>`;
   }
 }

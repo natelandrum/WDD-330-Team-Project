@@ -18,14 +18,14 @@ export function setLocalStorage(key, data) {
   if(cart.some(item => item.Id === data.Id)) {
     cart = cart.map(item => {
       if(item.Id === data.Id) {
-        return {...item, quanity: item.quanity + 1};
+        return {...item, quantity: item.quantity + 1};
       } else {
         return item;
       }
     });
   } 
   else {
-    data.quanity = 1;
+    data.quantity = 1;
     cart.push(data);
   }
 
