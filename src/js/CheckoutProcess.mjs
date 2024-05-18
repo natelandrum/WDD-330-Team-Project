@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs"
 
 const services = new ExternalServices();
@@ -18,7 +18,12 @@ export default class CheckoutProcess {
         this.calculateItemSummary();
         document.querySelector("form").addEventListener("submit", (e) => {
             e.preventDefault();
-            this.checkout();
+            const myForm = document.querySelector("form");
+            const chk_status = myForm.checkValidity();
+            myForm.reportValidity();
+            if (chk_status) {
+                this.checkout();
+            }
         });
     }
 
@@ -101,8 +106,15 @@ export default class CheckoutProcess {
 
         try {
             const res = await services.checkout(this.dataObject);
-            console.log(res);
+            if (res.message === "Order Placed") {
+                localStorage.removeItem(this.key);
+                location.href = "/checkout/success.html";
+            }
         } catch (err) {
+            removeAllAlerts();
+            for (let message in err.message) {
+                alertMessage(err.message[message]);
+            }
             console.log(err);
         }
     }
