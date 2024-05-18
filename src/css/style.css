@@ -94,7 +94,7 @@ button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
-  margin: auto;
+  margin: 1rem auto;
   display: block;
   border: 0;
   font-size: var(--large-font);
@@ -202,8 +202,8 @@ button {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
   align-items: center;
+  gap: 0.5rem;
 }
 
 .cart-card__image {
@@ -247,7 +247,7 @@ button {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid var(--light-grey);
-  margin: 1rem 0
+  margin: 1rem 0;
 }
 
 .searchBar {
@@ -262,6 +262,55 @@ button {
   height: 20px;
   margin-left: -40px;
   cursor: pointer;
+}
+
+.checkout-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.checkout-container label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.checkout-container input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkout-container input:valid {
+  border-color: green;
+}
+
+.checkout-container input:invalid {
+  border-color: red;
+}
+
+.summary {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.summary div {
+  margin-bottom: 1rem;
+}
+
+.summary div:last-child {
+  font-weight: bold;
+}
+
+button:hover {
+  background: #0a4917;
 }
 
 @media screen and (min-width: 500px) {
