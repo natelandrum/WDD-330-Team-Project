@@ -84,6 +84,8 @@
                 name="cardNumber"
                 autocomplete="cc-number"
                 required
+                title="16 digits on the front of your card"
+                placeholder="1234123412341234"
                 pattern="\d{16}"
               />
             </label>
@@ -94,6 +96,8 @@
                 name="expiration"
                 autocomplete="cc-exp"
                 required
+                title="MM/YY format"
+                placeholder="01/27"
                 pattern="(0?[1-9]|1[0-2])\/\d{2}"
               />
             </label>
@@ -104,6 +108,8 @@
                 name="code"
                 autocomplete="cc-csc"
                 required
+                title="3 digits on the back of your card"
+                placeholder="123"
                 pattern="\d{3}"
               />
             </label>
